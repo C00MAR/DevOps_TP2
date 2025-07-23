@@ -1,3 +1,9 @@
+variable "aws_region" {
+  description = "AWS region"
+  type        = string
+  default     = "eu-west-1"
+}
+
 variable "bucket_name" {
   type        = string
   description = "The bucket name"

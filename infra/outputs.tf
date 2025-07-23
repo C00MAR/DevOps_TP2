@@ -10,14 +10,15 @@ output "website_endpoint" {
 
 output "cloudfront_domain_name" {
   description = "Domain name of the CloudFront distribution"
-  value       = aws_cloudfront_distribution.main.domain_name
+  value       = aws_cloudfront_distribution.s3_distribution.domain_name
 }
 
 output "cloudfront_url" {
   description = "URL of the CloudFront distribution"
-  value       = "https://${aws_cloudfront_distribution.main.domain_name}"
+  value       = "https://${aws_cloudfront_distribution.s3_distribution.domain_name}"
 }
+
 output "cloudfront_distribution_id" {
   description = "ID of the CloudFront distribution"
-  value       = aws_cloudfront_distribution.main.id
+  value       = aws_cloudfront_distribution.s3_distribution.id
 }
