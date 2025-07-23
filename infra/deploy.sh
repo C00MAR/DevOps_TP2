@@ -1,10 +1,14 @@
 #!/bin/bash
-echo "Building React app..."
+set -e
+
 npm run build
 
-echo "Deploying infrastructure..."
 cd infra/
+terraform init
+terraform plan
 terraform apply -auto-approve
 
-echo "Deployment complete!"
 terraform output cloudfront_url
+
+DISTRIBUTION_ID=$(terraform output -raw cloudfront_distribution_id)
+aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths "/*"

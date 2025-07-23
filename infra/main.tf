@@ -1,6 +1,8 @@
 resource "aws_s3_bucket" "main" {
-  bucket = "${var.bucket_name}-${random_integer.random.result}"
-  tags   = var.tags
+  bucket = "${var.bucket_name}-${terraform.workspace}-${random_integer.random.result}"
+  tags   = merge(var.tags, {
+    Environment = terraform.workspace
+  })
 }
 
 resource "aws_s3_bucket_website_configuration" "main" {
